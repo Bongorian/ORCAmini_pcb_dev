@@ -1,0 +1,85 @@
+
+(rules PCB ORCA_MINI
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 5058)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.3)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.8)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd_smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "Net-(C1-Pad1)" USBGND "Net-(C2-Pad1)" USB5V LEFTOUT "Net-(C6-Pad1)" "Net-(C8-Pad1)" RIGHTOUT
+    "Net-(D1-Pad2)" row1 "Net-(D2-Pad2)" row2 "Net-(D3-Pad2)" "Net-(D4-Pad2)" "Net-(D5-Pad2)" row3
+    "Net-(D6-Pad2)" row4 "Net-(D7-Pad2)" "Net-(D8-Pad2)" row5 "Net-(D9-Pad2)" "Net-(D10-Pad2)" CENTER1
+    UP1 DOWN1 LEFT1 RIGHT1 CENTER2 UP2 DOWN2 LEFT2
+    RIGHT2 LED "Net-(D21-Pad1)" "Net-(D22-Pad1)" "Net-(D23-Pad1)" "Net-(D24-Pad1)" "Net-(D25-Pad1)" "Net-(D26-Pad1)"
+    "Net-(D27-Pad1)" "Net-(D28-Pad1)" "Net-(D29-Pad1)" "Net-(D30-Pad1)" "Net-(D31-Pad1)" "TV-" TV+ RUN2
+    RUN1 GPIO13 GPIO12 CS SCK RESET MISO MOSI
+    DC "Net-(IC1-Pad10)" "Net-(IC1-Pad8)" "Net-(IC1-Pad5)" "Net-(IC1-Pad3)" col1 col2 col3
+    col4 LEDBK "Net-(C3-Pad1)" "Net-(C4-Pad1)" "4-" 4+ "3-" 3+
+    "2-" 2+ "1-" 1+ "Net-(IC2-Pad14)" "USB-" USB+
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
